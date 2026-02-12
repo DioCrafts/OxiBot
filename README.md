@@ -4,6 +4,7 @@
     <img src="https://img.shields.io/badge/rust-≥1.84-orange?logo=rust" alt="Rust">
     <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
     <img src="https://img.shields.io/badge/tests-273%2B%20passed-brightgreen" alt="Tests">
+    <img src="https://img.shields.io/badge/RAM-<%208MB-blue" alt="RAM">
     <img src="https://img.shields.io/badge/binary-static%20single%20file-blue" alt="Binary">
   </p>
   <p><em>A Rust reimplementation of <a href="https://github.com/HKUDS/nanobot">nanobot</a> — delivering the same features with zero runtime dependencies, ultra-low memory, and sub-second startup.</em></p>
@@ -21,7 +22,7 @@
 |--------|--------|---------|
 | Language | Rust | Python |
 | Binary | Single static file | pip install + 50+ deps |
-| RAM | < 5 MB | ~50-100 MB |
+| RAM | < 8 MB | ~50-100 MB |
 | Startup | < 1 s | 2-4 s |
 | LOC (core) | ~18,372 | ~3,510 |
 | Cross-compile | x86_64, ARM64, RISC-V | Python-only |
