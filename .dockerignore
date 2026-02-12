@@ -1,0 +1,11 @@
+target/
+.git/
+*.md
+!README.md
+!bridge/README.md
+.gitignore
+.vscode/
+*.swp
+*.swo
+bridge/node_modules/
+bridge/dist/

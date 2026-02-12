@@ -1,0 +1,38 @@
+[package]
+name = "oxibot-channels"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Chat channel integrations for Oxibot"
+
+[features]
+default = []
+telegram = ["dep:teloxide", "dep:futures-util"]
+discord = ["dep:tokio-tungstenite", "dep:reqwest", "dep:url", "dep:serde", "dep:serde_json", "dep:futures-util"]
+whatsapp = ["dep:tokio-tungstenite", "dep:serde_json", "dep:futures-util"]
+slack = ["dep:tokio-tungstenite", "dep:reqwest", "dep:serde", "dep:serde_json", "dep:futures-util"]
+email = ["dep:lettre", "dep:mailparse", "dep:tokio-rustls", "dep:rustls", "dep:webpki-roots"]
+
+[dependencies]
+oxibot-core = { workspace = true }
+async-trait = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+chrono = { workspace = true }
+regex = "1"
+
+# Optional channel deps
+teloxide = { version = "0.17", default-features = false, features = ["macros", "rustls"], optional = true }
+futures-util = { version = "0.3", optional = true }
+tokio-tungstenite = { version = "0.26", features = ["rustls-tls-webpki-roots"], optional = true }
+reqwest = { workspace = true, optional = true }
+url = { version = "2", optional = true }
+serde = { workspace = true, optional = true }
+serde_json = { workspace = true, optional = true }
+lettre = { version = "0.11", default-features = false, features = ["tokio1-rustls-tls", "smtp-transport", "builder"], optional = true }
+mailparse = { version = "0.15", optional = true }
+tokio-rustls = { version = "0.26", optional = true }
+rustls = { version = "0.23", optional = true }
+webpki-roots = { version = "0.26", optional = true }

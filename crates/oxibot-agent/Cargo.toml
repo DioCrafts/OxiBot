@@ -1,0 +1,24 @@
+[package]
+name = "oxibot-agent"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Agent core: loop, tools, context, memory for Oxibot"
+
+[dependencies]
+oxibot-core = { workspace = true }
+oxibot-providers = { workspace = true }
+async-trait = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+chrono = { workspace = true }
+reqwest = { workspace = true }
+regex = "1"
+
+[dev-dependencies]
+tempfile = "3"
