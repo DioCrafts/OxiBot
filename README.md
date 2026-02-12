@@ -132,24 +132,24 @@ oxibot agent -m "Hello from my local LLM!"
 ┌─────────────────────────────────────────────────────────────────────┐
 │                        oxibot (single binary)                       │
 │                                                                     │
-│  ┌──────────┐  ┌───────────────┐  ┌────────────┐  ┌─────────────┐ │
-│  │ oxibot-  │  │   oxibot-     │  │  oxibot-   │  │   oxibot-   │ │
-│  │  cli     │──│   agent       │──│  providers │  │   cron      │ │
-│  │          │  │               │  │            │  │             │ │
-│  │ commands │  │ loop, tools,  │  │ 12 LLM     │  │ scheduler,  │ │
-│  │ gateway  │  │ memory, ctx   │  │ backends   │  │ jobs, store │ │
-│  │ repl     │  │ skills, sub   │  │ + whisper  │  │             │ │
-│  └──────────┘  └───────────────┘  └────────────┘  └─────────────┘ │
-│       │                │                                    │      │
-│  ┌────▼────────────────▼────────────────────────────────────▼────┐ │
-│  │                     oxibot-core                               │ │
-│  │   config · bus · session · heartbeat · types · utils          │ │
-│  └──────────────────────────┬────────────────────────────────────┘ │
-│                             │                                      │
-│  ┌──────────────────────────▼────────────────────────────────────┐ │
-│  │                    oxibot-channels                            │ │
-│  │   telegram · discord · whatsapp · slack · email              │ │
-│  └──────────────────────────────────────────────────────────────┘ │
+│  ┌──────────┐  ┌───────────────┐  ┌────────────┐  ┌─────────────┐   │
+│  │ oxibot-  │  │   oxibot-     │  │  oxibot-   │  │   oxibot-   │   │
+│  │  cli     │──│   agent       │──│  providers │  │   cron      │   │
+│  │          │  │               │  │            │  │             │   │
+│  │ commands │  │ loop, tools,  │  │ 12 LLM     │  │ scheduler,  │   │
+│  │ gateway  │  │ memory, ctx   │  │ backends   │  │ jobs, store │   │
+│  │ repl     │  │ skills, sub   │  │ + whisper  │  │             │   │
+│  └──────────┘  └───────────────┘  └────────────┘  └─────────────┘   │
+│       │                │                                    │       │
+│  ┌────▼────────────────▼────────────────────────────────────▼────┐  │
+│  │                     oxibot-core                               │  │
+│  │   config · bus · session · heartbeat · types · utils          │  │
+│  └──────────────────────────┬────────────────────────────────────┘  │
+│                             │                                       │
+│  ┌──────────────────────────▼────────────────────────────────────┐  │
+│  │                    oxibot-channels                            │  │
+│  │   telegram · discord · whatsapp · slack · email               │  │
+│  └───────────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────────┘
          │ (WhatsApp only)
          │ WebSocket ws://localhost:3001
@@ -552,4 +552,5 @@ PRs welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 <p align="center">
   <sub>OxiBot is a Rust reimplementation of <a href="https://github.com/HKUDS/nanobot">nanobot</a> for educational and research purposes.</sub>
+
 </p>
