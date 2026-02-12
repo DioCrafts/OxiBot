@@ -53,7 +53,7 @@ pub struct AgentLoop {
     /// LLM provider.
     provider: Arc<dyn LlmProvider>,
     /// Workspace root.
-    workspace: PathBuf,
+    _workspace: PathBuf,
     /// Model to use (overrides provider default if set).
     model: String,
     /// Max LLM ↔ tool iterations per message.
@@ -149,7 +149,7 @@ impl AgentLoop {
         Self {
             bus,
             provider,
-            workspace,
+            _workspace: workspace,
             model,
             max_iterations,
             request_config,

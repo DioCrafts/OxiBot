@@ -637,7 +637,7 @@ mod tests {
     #[tokio::test]
     async fn test_subagent_limited_tools() {
         let provider = Arc::new(MockSubagentProvider::simple("ok"));
-        let mgr = create_test_manager(provider);
+        let _mgr = create_test_manager(provider);
 
         // Build the tools the same way run_subagent does internally
         let mut tools = ToolRegistry::new();

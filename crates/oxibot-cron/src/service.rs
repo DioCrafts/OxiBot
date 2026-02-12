@@ -10,7 +10,7 @@
 //!
 //! No APScheduler. Fully custom async timer using `tokio::time::sleep`.
 
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 use std::sync::Arc;
 
 use chrono::Utc;
@@ -21,7 +21,7 @@ use oxibot_core::bus::queue::MessageBus;
 use oxibot_core::bus::types::OutboundMessage;
 
 use crate::types::{
-    compute_next_run_from, CronJob, CronPayload, CronSchedule, CronStore, JobStatus, ScheduleKind,
+    compute_next_run_from, CronJob, CronStore, JobStatus, ScheduleKind,
 };
 
 // ─────────────────────────────────────────────
@@ -622,6 +622,8 @@ mod tests {
 
     #[tokio::test]
     async fn test_execute_delivers_to_channel() {
+        use tokio::time::{timeout, Duration};
+
         let dir = TempDir::new().unwrap();
         let bus = make_bus();
         let path = dir.path().join("jobs.json");
@@ -630,7 +632,7 @@ mod tests {
         let callback: OnJobFn = Arc::new(|_| Box::pin(async { Ok("response text".into()) }));
         svc.set_on_job(callback).await;
 
-        let mut job = CronJob::new(
+        let job = CronJob::new(
             "deliver",
             CronSchedule::every(10_000),
             CronPayload {
@@ -640,13 +642,22 @@ mod tests {
                 to: Some("user123".into()),
             },
         );
-        job.state.next_run_at_ms = Some(0);
-        svc.add_job(job).await.unwrap();
+        let id = svc.add_job(job).await.unwrap();
+
+        // Force job to be due NOW (add_job computes next_run in the future)
+        {
+            let mut store = svc.store.lock().await;
+            if let Some(j) = store.find_mut(&id) {
+                j.state.next_run_at_ms = Some(0);
+            }
+        }
 
         svc.execute_due_jobs().await;
 
-        // Check outbound message was published
-        let outbound = bus.consume_outbound().await;
+        // Check outbound message was published (with timeout to avoid hanging)
+        let outbound = timeout(Duration::from_secs(5), bus.consume_outbound())
+            .await
+            .expect("timed out waiting for outbound message");
         assert!(outbound.is_some());
         let msg = outbound.unwrap();
         assert_eq!(msg.channel, "telegram");

@@ -456,7 +456,7 @@ mod tests {
     #[test]
     fn test_store_enabled_jobs() {
         let mut store = CronStore::new();
-        let mut j1 = CronJob::new("enabled", CronSchedule::default(), CronPayload::default());
+        let j1 = CronJob::new("enabled", CronSchedule::default(), CronPayload::default());
         let mut j2 = CronJob::new("disabled", CronSchedule::default(), CronPayload::default());
         j2.enabled = false;
         store.add(j1);

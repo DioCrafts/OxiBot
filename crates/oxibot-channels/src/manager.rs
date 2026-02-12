@@ -449,7 +449,7 @@ mod tests {
 
         // Register a channel that sleeps in start()
         // Signal shutdown should wake up start_all
-        let mgr_shutdown = Arc::new(Notify::new());
+        let _mgr_shutdown = Arc::new(Notify::new());
 
         // Just verify signal_shutdown doesn't panic
         mgr.signal_shutdown();

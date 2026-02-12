@@ -172,7 +172,6 @@ const SKILL_CREATOR_TEMPLATE: &str = include_str!("../../oxibot-agent/skills/ski
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::path::Path;
 
     #[test]
     fn create_template_new_file() {
